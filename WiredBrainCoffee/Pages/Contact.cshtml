@@ -10,6 +10,10 @@
         <small>We'd love to hear from you.</small>
     </h1>
     <hr />
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-success">@Model.Message</div>
+    }
     <div class="row">
         <div class="col-md-8 mb-4">
             <p>Life gets busy but we try to respond with 24 hours.  If you have a more immediate question, give us a ring using the number over on the right. We are crazy friendly!</p>
