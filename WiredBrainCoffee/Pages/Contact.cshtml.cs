@@ -12,7 +12,7 @@ namespace WiredBrainCoffee.Pages
     public class ContactModel : PageModel
     {
         [BindProperty]
-        public Contact Contact{ get; set; }
+        public Contact Contact { get; set; }
         public string Message { get; private set; }
 
         public void OnGet()
@@ -21,8 +21,17 @@ namespace WiredBrainCoffee.Pages
 
         public void OnPost()
         {
-            EmailService.SendEmail(Contact);
-            Message = "Your email has been sent.";
+            if (ModelState.IsValid)
+            {
+                EmailService.SendEmail(Contact);
+                Message = "Your email has been sent.";
+            }
+        }
+
+        public void OnPostSubscribe(string address)
+        {
+            EmailService.SendEmail(address);
+            Message = "You've been added to the mailing list";
         }
     }
 }
